@@ -1,0 +1,245 @@
+<clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="false" clrModalSize="lg">
+    <h3 class="modal-title">{{"APP_ADD"|translate}}{{"APP_STORAGE_CLASS"|translate}}</h3>
+    <div class="modal-body">
+        <form clrForm #itemForm='ngForm'>
+            <clr-input-container>
+                <label>{{"APP_NAME"|translate}}</label>
+                <input clrInput [size]="34" name="name"
+                       pattern="[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*"
+                       [(ngModel)]="item.metadata.name" required>
+                <clr-control-helper>{{'APP_STORAGE_NAME_HELPER'|translate}}</clr-control-helper>
+            </clr-input-container>
+
+            <clr-select-container>
+                <label>{{"APP_PROVISIONER"|translate}}</label>
+                <select name="provisioner" [(ngModel)]="provisioner" (change)="onProvisionerChange()" clrSelect
+                        required>
+                    <option value="">{{"APP_DEFAULT_OPTION"|translate}}</option>
+                    <option [ngValue]="p" *ngFor="let p of provisioners" [disabled]="p.status !== 'Running'">
+                        [{{p.type}}]{{p.name}}
+                    </option>
+                </select>
+            </clr-select-container>
+            <table class="table table-vertical" *ngIf="provisioner&&provisioner.type==='nfs'">
+                <tbody>
+                <tr>
+                    <th>provisioner_name</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="provisioner_name" [(ngModel)]="item.provisioner"
+                               disabled>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-vertical" *ngIf="provisioner&&provisioner.type==='rook-ceph'">
+                <tbody>
+                <tr>
+                    <th>provisioner_name</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="provisioner_name" [(ngModel)]="item.provisioner"
+                               disabled>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-vertical" *ngIf="provisioner&&provisioner.type==='vsphere'">
+                <tbody>
+                <tr>
+                    <th>provisioner_name</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="provisioner_name" [(ngModel)]="item.provisioner"
+                               disabled>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Datastore</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="datastore" [(ngModel)]="item.parameters['datastore']"
+                               disabled>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-vertical" *ngIf="provisioner&&provisioner.type==='external-ceph'">
+                <tbody>
+                <tr>
+                    <th>Provisioner</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="provisioner_name" [(ngModel)]="item.provisioner"
+                               disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Monitor</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="monitor" placeholder="eg: 172.16.10.10:6389"
+                               [(ngModel)]="item.parameters['monitors']"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <th>OSD Pool</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="osd_pool" placeholder="eg: kube"
+                               [(ngModel)]="item.parameters['pool']"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <th>Admin Id</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="admin_id" placeholder="eg: kube"
+                               [(ngModel)]="item.parameters['adminId']"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <th>Admin Secret Name</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="admin_secret" placeholder="eg: secret"
+                               [(ngModel)]="item.parameters['adminSecretName']"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <th>Admin Secret Namespace</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="admin_secret_namespace" placeholder="eg: kube-system"
+                               [(ngModel)]="item.parameters['adminSecretNamespace']"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <th>User Id</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="user_id" placeholder="eg: kube"
+                               [(ngModel)]="item.parameters['userId']"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <th>User Secret Name</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="user_secret" placeholder="eg: secret"
+                               [(ngModel)]="item.parameters['userSecretName']"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <th>FS Type</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="fsType" placeholder="eg: ext4"
+                               [(ngModel)]="item.parameters['fsType']"
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <th>ImageFormat</th>
+                    <td>
+                        <input [size]="34" class="clr-input" name="imageFormat" placeholder="eg: 2"
+                               [(ngModel)]="item.parameters['imageFormat']"
+                        >
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-vertical" *ngIf="provisioner&&provisioner.type==='oceanstor'">
+                <tbody>
+                <tr>
+                    <th>volumeType</th>
+                    <td>
+                        <div class="clr-select-wrapper">
+                            <select class="clr-select" [(ngModel)]="item.parameters['volumeType']"
+                                    name="oceanstor_sc_volume" required>
+                                <option value="">{{"APP_DEFAULT_OPTION"|translate}}</option>
+                                <option value="lun">lun</option>
+                                <option value="fs">fs</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="item.parameters['volumeType']==='fs'">
+                    <th>authClient</th>
+                    <td>
+                        <div class="clr-control-container">
+                            <div class="clr-input-wrapper">
+                                <input [size]="34" class="clr-input" name="authClient" placeholder="demo1,demo2"
+                                       [(ngModel)]="item.parameters['authClient']" required>
+                            </div>
+                            <span class="clr-subtext">{{'APP_OCEAN_STOR_AUTHCLIENT'|translate}}</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>allocType</th>
+                    <td>
+                        <div class="clr-control-container">
+                            <div class="clr-select-wrapper">
+                                <select class="clr-select" [(ngModel)]="item.parameters['allocType']"
+                                        name="oceanstor_sc_alloc"
+                                        required>
+                                    <option value="">{{"APP_DEFAULT_OPTION"|translate}}</option>
+                                    <option value="thin">thin</option>
+                                    <option value="thick">thick</option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>cloneFrom</th>
+                    <td>
+                        <div class="clr-control-container">
+                            <div class="clr-input-wrapper">
+                                <input [size]="34" class="clr-input" name="cloneFrom"
+                                       [(ngModel)]="item.parameters['cloneFrom']">
+                            </div>
+                            <span class="clr-subtext">{{'APP_OCEAN_STOR_CLONEFROM'|translate}}</span>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>cloneSpeed</th>
+                    <td>
+                        <div class="clr-control-container">
+                            <div class="clr-input-wrapper">
+                                <input [size]="34" class="clr-input" name="cloneSpeed"
+                                       [(ngModel)]="item.parameters['cloneSpeed']" placeholder="1-4">
+                            </div>
+                            <span class="clr-subtext">{{'APP_OCEAN_STOR_CLONSPEED'|translate}}</span>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr *ngIf="item.parameters['oceanstor_sc_volume']==='lun'">
+                    <th>fsType</th>
+                    <td>
+                        <div class="clr-select-wrapper">
+                            <select class="clr-select" [(ngModel)]="item.parameters['fsType']"
+                                    name="oceanstor_sc_alloc">
+                                <option value="">{{"APP_DEFAULT_OPTION"|translate}}</option>
+                                <option value="ext2">ext2</option>
+                                <option value="ext3">ext3</option>
+                                <option value="ext4">ext4</option>
+                            </select>
+                        </div>
+                        <span class="clr-subtext">{{'APP_OCEAN_STOR_FSTYPE'|translate}}</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+        <app-modal-alert></app-modal-alert>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="onCancel()" [disabled]="isSubmitGoing">{{'APP_CANCEL'|translate}}</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [clrLoading]="isSubmitGoing"
+                [disabled]="itemForm.invalid">{{'APP_COMMIT'|translate}}</button>
+    </div>
+</clr-modal>

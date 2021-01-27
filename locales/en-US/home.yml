@@ -1,0 +1,108 @@
+#common
+NAME_EXISTS: "Name already exists"
+IP_NOT_EXISTS: "Please fill in the registry IP on the system setting page"
+
+#cluster
+CLUSTER_DELETE_FAILED: "can not delete cluster in current state"
+CLUSTER_IS_NOT_RUNNING: "The cluster is not running"
+CLUSTER_IS_NOT_LOCAL: "Import cluster cannot be upgraded"
+
+#credential
+DELETE_FAILED_RESOURCE: "Failed to delete! There is an associated host under this key"
+DELETE_FAILED_RESOURCE_ZONE: "Failed to delete! There is an associated zone under this key"
+DEFAULT_CREDENTIAL_CAN_NOT_DELETE: "Default credential cannot be deleted"
+NAME_CHECK_FAILED: "The credential name cannot be the same as the user name"
+
+
+#host
+HOST_ALREADY_EXISTS: "Host already exists"
+DELETE_HOST_FAILED: "Failed to delete! The host is already associated with the cluster"
+DELETE_HOST_FAILED_BY_PROJECT: "Failed to delete! The host is already associated with the project"
+SYSTEM_IP_NOT_FOUND: "Please fill in the local IP first！"
+NO_IP_AVAILABLE: "No Ip available"
+IS_LOCAL_HOST: "can not import local host"
+HOST_IMPORT_ERROR_NULL: "No data to import was found! Please check the import file!"
+HOST_IMPORT_NULL_VALUE: "Empty data on line %s"
+HOST_IMPORT_WRONG_FORMAT: "Incorrect port format on line %s"
+HOST_IMPORT_CREDENTIAL_NOT_FOUND: "Credential not found on line %s"
+HOST_IMPORT_FAILED_NUM: "A total of %s rows of data are abnormal, skip"
+HOST_IMPORT_FAILED_SAVE: "Failed to save host %s, reason:%s"
+
+
+#user
+PASSWORD_NOT_MATCH: "The password is incorrect"
+ORIGINAL_NOT_MATCH: "The original password is incorrect"
+USER_IS_NOT_ACTIVE: "The user is not enabled! Please contact the administrator!"
+USER_NOT_FOUND: "No such user！"
+ADMIN_CAN_NOT_DELETE: "The default admin user cannot be deleted!"
+USER_IS_NOT_RELATED_PROJECT: "User has no associated project！"
+LDAP_CAN_NOT_UPDATE: "The ldap user cannot be edited!"
+VERIFY_CODE_FAILED: "Verification code error"
+EMAIL_DISABLE: "Mail settings are disabled! Please contact the administrator"
+EMAIL_NOT_MATCH: "Email match failed！"
+NAME_PASSWORD_SAME_FAILED: "Username cannot be the same as password"
+NAME_PASSWORD_ERROR: "wrong user name or password"
+EMAIL_EXIST: "Email already exists"
+
+#region
+DELETE_REGION_FAILED_RESOURCE: "Failed to delete! The region is already associated with the zone"
+
+#zone
+DELETE_ZONE_FAILED_RESOURCE: "Failed to delete! The zone is already associated with the plan"
+CLUSTER_IS_NULL: "Cannot get the cluster! Please check the configuration！"
+IMAGE_IS_NULL: "Cannot get the image! Please check the configuration！"
+IP_SHORT: "Insufficient Ip"
+
+#openstack
+GET_REGION_ERROR: "No region found"
+
+#projectMember
+USER_IS_ADD: "User has been added"
+
+#project
+DEFAULT_PROJECT_CAN_NOT_DELETE: "Default project cannot be deleted"
+PROJECT_HAS_CLUSTER: "Project associated cluster! Cannot be deleted!"
+
+#node
+NODE_ALREADY_RUNNING_TASK: "Add node or delete node already running,please wait it done."
+
+#backupAccount
+PARAM_EMPTY: "Insufficient parameters"
+NOT_SUPPORT: "Unsupported type"
+CHECK_FAILED: "Verification failed"
+DELETE_BACKUP_ACCOUNT_FAILED_BY_PROJECT: "Failed to delete! The backupAccount is already associated with the project"
+
+#plan
+DELETE_FAILED_BY_PROJECT: "Failed to delete! The plan is already associated with the project"
+
+#clusterBackup
+BACKUP_FILES_NOT_NULL: "Please delete the backup file before switching the backup account"
+CLUSTER_IS_BACKUP: "The cluster is being backed up！"
+CLUSTER_IS_RESTORE: "The cluster is restoring！"
+
+#projectResource
+DELETE_FAILED_BY_BACKUP_FILE: "Please delete the backup file first！"
+DELETE_HOST_FAILED_BY_CLUSTER: "The host already belongs to the cluster! This operation cannot be performed!"
+
+#ldap
+LDAP_USER_IS_NULL: "Synchronized users are 0"
+LDAP_LOGIN_USER_IS_NULL: "User is not exist!"
+LDAP_DISABLE: "The system prohibits LDAP users from logging in. Please contact the administrator!"
+
+#cis
+CIS_TASK_ALREADY_RUNNING: "cis task already running"
+
+#vmConfig
+VM_CONFIG_EXISTS: "Configuration already exists"
+VM_CONFIG_DELETE_FAILED: "The configuration already belongs to the deployment plan! This operation cannot be performed!"
+
+#ip
+IP_EXISTS: "The entered IP segment conflicts with the existing IP segment, please fill in again"
+IP_NOT_AVAILABLE: "IP %s is occupied and cannot be released"
+
+#ip-pool
+IP_POOL_DELETE_FAILED: "The IP pool has been associated with the available zone and cannot be deleted"
+
+
+
+

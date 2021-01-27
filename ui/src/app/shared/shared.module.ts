@@ -1,38 +1,37 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NotFoundComponent} from './not-found/not-found.component';
 import {CoreModule} from '../core/core.module';
-import {AuthUserActiveService} from './route/auth-user-active.service';
-import {NullFilterPipe} from './pipe/null-filter.pipe';
-import {DeleteAlertComponent} from './common-component/delete-alert/delete-alert.component';
-import {ConfirmAlertComponent} from './common-component/confirm-alert/confirm-alert.component';
-import {StatusPipe} from './pipe/status.pipe';
-import {StatusColorPipe} from './pipe/status-color.pipe';
 import {ModalAlertComponent} from './common-component/modal-alert/modal-alert.component';
-import {KeysPipe} from './pipe/keys.pipe';
-import { ProgressColorPipe } from './pipe/progress-color.pipe';
-import { BadgeClassPipe } from './pipe/badge-class.pipe';
+import {K8sPaginationComponent} from './common-component/k8s-pagination/k8s-pagination.component';
+import { FilterComponent } from './common-component/filter/filter.component';
+import {ZoneStatusPipe} from './pipe/zone-status.pipe';
+import {CommonStatusPipe} from './pipe/common-status.pipe';
+import {BackupAccountStatusPipe} from './pipe/backup-account-status.pipe';
+import { UserTypePipe } from './pipe/user-type.pipe';
+import { EmailShowPipe } from './pipe/email-show.pipe';
+import { ErrFormatPipe } from './pipe/err-format.pipe';
+import { MessageTypePipe } from './pipe/message-type.pipe';
+
 
 @NgModule({
-  declarations: [NotFoundComponent, KeysPipe, NullFilterPipe, DeleteAlertComponent, ConfirmAlertComponent, StatusPipe,
-    StatusColorPipe, ModalAlertComponent, ProgressColorPipe, BadgeClassPipe],
-  imports: [
-    CommonModule,
-    CoreModule
-  ], exports: [
-    CoreModule,
-    NullFilterPipe,
-    StatusPipe,
-    DeleteAlertComponent,
-    ConfirmAlertComponent,
-    ModalAlertComponent,
-    StatusColorPipe,
-    KeysPipe,
-    ProgressColorPipe,
-    BadgeClassPipe
-  ], providers: [
-    AuthUserActiveService,
-  ]
+    declarations: [ModalAlertComponent, K8sPaginationComponent, ZoneStatusPipe, CommonStatusPipe, BackupAccountStatusPipe, UserTypePipe,EmailShowPipe,ErrFormatPipe, MessageTypePipe,FilterComponent
+    ],
+    exports: [
+        ModalAlertComponent,
+        K8sPaginationComponent,
+        ZoneStatusPipe,
+        CommonStatusPipe,
+        BackupAccountStatusPipe,
+        UserTypePipe,
+        EmailShowPipe,
+        ErrFormatPipe,
+        MessageTypePipe,
+        FilterComponent
+    ],
+    imports: [
+        CommonModule,
+        CoreModule,
+    ]
 })
 export class SharedModule {
 }
